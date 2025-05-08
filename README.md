@@ -1,96 +1,108 @@
-# Django PDF-to-Text API Project
+# PDF Text Extraction API
 
-This project exposes a secure API that converts PDF files stored in a local folder to text, returning the result as a JSON response. A middleware layer enforces API key authentication for access control.
+This project is a Django-based REST API that extracts text content from PDF files located in a local directory and returns the content as a structured JSON response. Authentication is handled using an API key mechanism.
 
----
+## Features
 
-## 🚀 Getting Started (When You Resume Work)
+- Accepts PDF files from a pre-defined directory (`/pdfs`)
+- Extracts text using `pdfplumber`
+- Returns extracted content in JSON format via an API endpoint
+- Logs errors to `error.log`
+- Secured with an API key system defined in a `.env` file
 
-Follow these steps each time you return to this project:
-
-### 1. Open Terminal and Navigate to Project Directory
-
-```bash
-cd path/to/your/project
-```
-
----
-
-### 2. Activate the Virtual Environment
-
-- **Windows**:
-  ```bash
-  venv\Scripts\activate
-  ```
-
-- **macOS/Linux**:
-  ```bash
-  source venv/bin/activate
-  ```
-
-You should see `(venv)` at the start of your terminal prompt once it's active.
-
----
-
-### 3. Set Environment Variables (if needed)
-
-If you're using `python-decouple`, make sure your `.env` file is still present in the root directory with values like:
-
-```env
-API_SECRET_KEY=your-secret-key
-X_API_KEY_NAME=x-api-key
-DEBUG=True
-```
-
----
-
-### 4. Install Requirements (Only If Needed)
-
-If you're on a new machine or reinstalled your environment:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### 5. Run Migrations (First time only or after changes)
-
-```bash
-python manage.py migrate
-```
-
----
-
-### 6. Start the Django Development Server
-
-```bash
-python manage.py runserver
-```
-
-Your API will be available at:  
-http://127.0.0.1:8000/api/extract/
-
-Use `curl` or Postman with the correct API key in the header:
-
-```bash
-curl -H "x-api-key: your-secret-key" http://127.0.0.1:8000/api/extract/
-```
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```
-project/
-├── api/                # Your Django app
-│   ├── views.py
-│   ├── urls.py
-│   └── middleware.py
-├── pdfs/               # Folder containing input PDFs
-│   └── output/         # JSON results saved here
+project_root/
 ├── manage.py
-├── .env
-├── requirements.txt
+├── your_django_project/
+│   └── settings.py
+├── your_app/
+│   └── views.py
+├── pdfs/                # Directory to place PDF files to be processed
+├── output/              # Generated output files and JSON response will be saved here
+├── .env                 # API keys and other environment variables
+├── requirements.txt     # Python dependencies
 └── README.md
 ```
+
+## Prerequisites
+
+- Python 3.8+
+- Virtual environment (recommended)
+
+## Setup Instructions
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://your-repo-url.git
+   cd your-repo-name
+   ```
+
+2. **Create and Activate Virtual Environment**
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Setup `.env` File**
+
+   Create a `.env` file in the project root and add:
+
+   ```env
+   API_KEY=your_api_key_here
+   API_SECRET=your_api_secret_here
+   ```
+
+5. **Create Required Directories**
+
+   Ensure the following directories exist:
+
+   ```bash
+   mkdir -p pdfs output
+   ```
+
+6. **Apply Migrations**
+
+   ```bash
+   python manage.py migrate
+   ```
+
+7. **Run the Server**
+
+   ```bash
+   python manage.py runserver
+   ```
+
+8. **Access the API**
+
+   - **Endpoint:** `http://localhost:8000/api/extract/`
+   - **Headers:**
+     ```http
+     x-api-key: your_api_key_here
+     ```
+
+## Logging
+
+- All application errors are logged to `error.log` in the project root.
+- Make sure the file exists and is writable by the application:
+
+  ```bash
+  touch error.log
+  chmod 664 error.log
+  ```
+
+## Notes
+
+- Only files inside the `pdfs/` folder will be processed.
+- The `output/` folder will contain a generated JSON file (`output.json`) after a successful API call.
+
+---
