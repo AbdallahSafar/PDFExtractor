@@ -58,8 +58,8 @@ project_root/
    Create a `.env` file in the project root and add:
 
    ```env
-   API_KEY=your_api_key_here
-   API_SECRET=your_api_secret_here
+   API_KEY_NAME=x-api-key
+   API_SECRET_KEY=your_api_secret_here
    ```
 
 5. **Create Required Directories**
@@ -67,7 +67,7 @@ project_root/
    Ensure the following directories exist:
 
    ```bash
-   mkdir -p pdfs output
+   mkdir -p pdfs
    ```
 
 6. **Apply Migrations**
@@ -93,16 +93,8 @@ project_root/
 ## Logging
 
 - All application errors are logged to `error.log` in the project root.
-- Make sure the file exists and is writable by the application:
-
-  ```bash
-  touch error.log
-  chmod 664 error.log
-  ```
 
 ## Notes
 
 - Only files inside the `pdfs/` folder will be processed.
-- The `output/` folder will contain a generated JSON file (`output.json`) after a successful API call.
-
 ---
