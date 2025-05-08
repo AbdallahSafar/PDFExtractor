@@ -69,12 +69,12 @@ python manage.py runserver
 ```
 
 Your API will be available at:  
-http://127.0.0.1:8000/api/convert-pdf/
+http://127.0.0.1:8000/api/extract/
 
 Use `curl` or Postman with the correct API key in the header:
 
 ```bash
-curl -H "x-api-key: your-secret-key" http://127.0.0.1:8000/api/convert-pdf/
+curl -H "x-api-key: your-secret-key" http://127.0.0.1:8000/api/extract/
 ```
 
 ---
