@@ -36,7 +36,7 @@ project_root/
 1. **Clone the Repository**
 
    ```bash
-   git clone https://your-repo-url.git
+   git clone https://github.com/AbdallahSafar/PDFExtractor.git
    cd your-repo-name
    ```
 
